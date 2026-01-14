@@ -14,13 +14,17 @@ class DetailScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          todo.imagePath != null
-              ? Image.file(File(todo.imagePath!))
-              : Container(
-                  height: 250,
-                  color: Colors.grey,
-                  child: Center(child: Text('사진 없음')),
-                ),
+          Container(
+            constraints: const BoxConstraints(minHeight: 250),
+            width: double.infinity,
+            color: Colors.grey,
+            child: todo.imagePath == null
+                ? const SizedBox(
+                    height: 250,
+                    child: Center(child: Text('사진 없음')),
+                  )
+                : Image.file(File(todo.imagePath!), fit: BoxFit.fitWidth),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
