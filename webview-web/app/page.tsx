@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import ProductList from '@/components/product/ProductList';
-import { products, categories, getProductsByCategory } from '@/data/products';
+import { categories } from '@/data/products';
+import { useProducts } from '@/store/products';
 import { cn } from '@/lib/utils';
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('전체');
+  const { getProductsByCategory } = useProducts();
   const filteredProducts = getProductsByCategory(selectedCategory);
 
   return (

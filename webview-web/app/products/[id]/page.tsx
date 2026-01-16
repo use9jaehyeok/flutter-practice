@@ -6,13 +6,14 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Button from '@/components/ui/Button';
 import QuantitySelector from '@/components/ui/QuantitySelector';
-import { getProductById } from '@/data/products';
+import { useProducts } from '@/store/products';
 import { useCart } from '@/store/cart';
 import { formatPrice } from '@/lib/utils';
 
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const { getProductById } = useProducts();
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
